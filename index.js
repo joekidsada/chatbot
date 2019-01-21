@@ -21,13 +21,13 @@ const client = new line.Client({
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
  
-// connection.connect(function(err) {
-//     if (err) {
-//       console.error('error connecting: ' + err.stack);
-//       return;
-//     }
-//     console.log('_____________connection is success!!_____________');
-//   });
+connection.connect(function(err) {
+    if (err) {
+      console.error('error connecting: ' + err.stack);
+      return;
+    }
+    console.log('_____________connection is success!!_____________');
+  });
 
 app.get('/',(req, res) => {
     res.send({status: 'ok'})
@@ -56,13 +56,6 @@ app.post('/webhook',(req, res) => {
             console.log(`type ==> ${type}`);
 
             if(type == 'text'){
-                connection.connect(function(err) {
-                    if (err) {
-                      console.error('error connecting: ' + err.stack);
-                      return;
-                    }
-                    console.log('_____________connection is success!!_____________');
-                  });
                 let text = message.text;
                 const messageResponse = [
                   {
