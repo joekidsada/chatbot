@@ -1,8 +1,17 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const app = express();
+const bodyParser = require('body-parser');
 const port = process.env.PORT || 5000
 const line = require('@line/bot-sdk');
+const mysql = require('mysql');
+
+let connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : '',
+    database : 'linebot'
+});
+
 
 const client = new line.Client({
   channelAccessToken: 'wBV6w2r0JEXbApLEA0V4CexEEjg2GygvJSAJbqrxocoEvybEw7YwegdexcWkrq/hpoD4rJ0OIUMH/i2VW8zl17DKEAIMhKF+V0RdmXhaHqN2qyt4JXW3IbRyHA+orb8+wdWBju/ixQSHv3qJD3DJ+AdB04t89/1O/w1cDnyilFU='
@@ -12,6 +21,14 @@ const client = new line.Client({
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
  
+// connection.connect(function(err) {
+//     if (err) {
+//       console.error('error connecting: ' + err.stack);
+//       return;
+//     }
+//     console.log('_____________connection is success!!_____________');
+//   });
+
 app.get('/',(req, res) => {
     res.send({status: 'ok'})
 })
@@ -39,6 +56,13 @@ app.post('/webhook',(req, res) => {
             console.log(`type ==> ${type}`);
 
             if(type == 'text'){
+                connection.connect(function(err) {
+                    if (err) {
+                      console.error('error connecting: ' + err.stack);
+                      return;
+                    }
+                    console.log('_____________connection is success!!_____________');
+                  });
                 let text = message.text;
                 const messageResponse = [
                   {
