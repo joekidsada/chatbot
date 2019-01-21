@@ -37,16 +37,21 @@ app.post('/webhook',(req, res) => {
         case 'message':
             let type = message.type;
             console.log(`type ==> ${type}`);
-            let id = message.id;
 
             if(type == 'text'){
-                console.log("_______________IF_______________")
                 let text = message.text;
-                const message = {
+                const messageResponse = [
+                  {
                     type: 'text',
                     text: `Joe สวัสดีจ้า มีอะไรก็มาดิคับ!!`
+                  },
+                  {
+                    type: 'sticker',
+                    stickerId: '2',
+                    packageId: '1'
                   }
-                  replyMessage(replyToken,message);
+                ];
+                  replyMessage(replyToken,messageResponse);
             }
             else if(type == 'sticker'){
                 let stickerId = message.stickerId;
