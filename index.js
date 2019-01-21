@@ -45,11 +45,6 @@ app.post('/webhook',(req, res) => {
                 const message = [{
                     type: 'text',
                     text: `Joe สวัสดีจ้า มีอะไรก็มาดิคับ!!`
-                  },
-                  {
-                    type: "sticker",
-                    packageId: '12082',
-                    stickerId: '69583388'
                   }
                 ];
                   replyMessage(replyToken,message);
