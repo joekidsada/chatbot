@@ -62,7 +62,7 @@ app.post('/webhook',(req, res) => {
                 let dataFromUser = message.text //ข้อมูลจาก user
                 let sendToFind;
                 console.log(`_____________________${dataFromUser}____________________`);
-                let dataArray;
+                let dataArray = [];
                 MongoClient.connect(url, function(err, client) {
                     assert.equal(null, err);
                     //console.log("Connected successfully to server");
