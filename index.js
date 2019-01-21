@@ -126,9 +126,12 @@ app.post('/webhook',(req, res) => {
 const replyMessage = (replyToken, message, dataArray) => {
     console.log('//////////////send TO user////////////////');
     console.log('==> [replyMessage]');
-    console.log(`==> replyToken: ${replyToken}`)
-    console.log('==> message: ')
+    console.log(`==> replyToken: ${replyToken}`);
+    console.log('==> message: ');
     console.log(message);
+    console.log('==> dataArray: ');
+    console.log(dataArray.age);
+    
     client.replyMessage(replyToken, message, dataArray)
     .then(() => {
         console.log('replyMessage is successfully!!')
