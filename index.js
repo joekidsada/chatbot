@@ -9,7 +9,7 @@ app.use(bodyParser.json())
 app.get('/',(req, res) => {
     res.send({status: 'ok'})
 })
-
+  
 app.post('/webhook',(req, res) => {
     let body = req.body;
     let response = { 
