@@ -19,19 +19,19 @@ app.use(bodyParser.json())
 
 
 app.get('/',(req, res) => {
-    MongoClient.connect(url, function(err, client) {
-        assert.equal(null, err);
-        //console.log("Connected successfully to server");
-        const db = client.db(dbName);
-        const collection = db.collection('users');
-        collection.find({}).toArray((err, t) => {
-            if(err) throw err
-            console.log("Connected successfully to server");
-            console.log(t);
+    // MongoClient.connect(url, function(err, client) {
+    //     assert.equal(null, err);
+    //     //console.log("Connected successfully to server");
+    //     const db = client.db(dbName);
+    //     const collection = db.collection('users');
+    //     collection.find({}).toArray((err, t) => {
+    //         if(err) throw err
+    //         console.log("Connected successfully to server");
+    //         console.log(t);
             
-        })
-        //client.close();
-    });
+    //     })
+    //     //client.close();
+    // });
     res.send({status: 'ok'});
 })
   
@@ -59,9 +59,24 @@ app.post('/webhook',(req, res) => {
             
             if(type == 'text'){
                 
-                let data = message.text //ข้อมูลจาก user
+                let dataFromUser = message.text //ข้อมูลจาก user
                 let sendToFind;
-                console.log(`_____________________${data}____________________`);
+                console.log(`_____________________${dataFromUser}____________________`);
+                let data;
+                MongoClient.connect(url, function(err, client) {
+                    assert.equal(null, err);
+                    //console.log("Connected successfully to server");
+                    const db = client.db(dbName);
+                    const collection = db.collection('users');
+                    collection.find({}).toArray((err, result) => {
+                        if(err) throw err
+                        data = result;
+                        console.log("Connected successfully to server");
+                        console.log(result);
+                        
+                    })
+                    //client.close();
+                });
                 const messageResponse = [
                   {
                     type: 'text',
@@ -73,7 +88,7 @@ app.post('/webhook',(req, res) => {
                     packageId: '1'
                   }
                 ];
-                  replyMessage(replyToken,messageResponse);
+                  replyMessage(replyToken,messageResponse,data);
             }
             // else if(type == 'sticker'){
             //     let stickerId = message.stickerId;
@@ -108,14 +123,14 @@ app.post('/webhook',(req, res) => {
 })
 
 //Method
-const replyMessage = (replyToken, message) => {
+const replyMessage = (replyToken, message, data) => {
     console.log('//////////////send TO user////////////////');
     console.log('==> [replyMessage]');
     console.log(`==> replyToken: ${replyToken}`)
     console.log('==> message: ')
     console.log(message);
 
-    client.replyMessage(replyToken, message)
+    client.replyMessage(replyToken, message, data)
     .then(() => {
         console.log('replyMessage is successfully!!')
     })
