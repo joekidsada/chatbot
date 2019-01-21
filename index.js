@@ -3,34 +3,36 @@ const app = express();
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 5000
 const line = require('@line/bot-sdk');
-const mysql = require('mysql');
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
 
-let connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : '',
-    database : 'linebot'
-});
-
+const url = 'mongodb://user02:user02@ds157834.mlab.com:57834/smartqr';
+ 
+const dbName = 'smartqr';
 
 const client = new line.Client({
   channelAccessToken: 'wBV6w2r0JEXbApLEA0V4CexEEjg2GygvJSAJbqrxocoEvybEw7YwegdexcWkrq/hpoD4rJ0OIUMH/i2VW8zl17DKEAIMhKF+V0RdmXhaHqN2qyt4JXW3IbRyHA+orb8+wdWBju/ixQSHv3qJD3DJ+AdB04t89/1O/w1cDnyilFU='
 });
 
-
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
- 
-connection.connect(function(err) {
-    if (err) {
-      console.error('error connecting: ' + err.stack);
-      return;
-    }
-    console.log('_____________connection is success!!_____________');
-  });
+
 
 app.get('/',(req, res) => {
-    res.send({status: 'ok'})
+    // MongoClient.connect(url, function(err, client) {
+    //     assert.equal(null, err);
+    //     //console.log("Connected successfully to server");
+    //     const db = client.db(dbName);
+    //     const collection = db.collection('users');
+    //     collection.find({}).toArray((err, t) => {
+    //         if(err) throw err
+    //         console.log("Connected successfully to server");
+    //         console.log(t);
+            
+    //     })
+    //     //client.close();
+    // });
+    res.send({status: 'ok'});
 })
   
 app.post('/webhook',(req, res) => {
@@ -54,9 +56,12 @@ app.post('/webhook',(req, res) => {
         case 'message':
             let type = message.type;
             console.log(`type ==> ${type}`);
-
+            let data = message.text
+            console.log(`_____________________${data}____________________`);
+            
             if(type == 'text'){
                 let text = message.text;
+                
                 const messageResponse = [
                   {
                     type: 'text',
