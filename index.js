@@ -88,7 +88,7 @@ const replyMessage = (replyToken, message) => {
     console.log('==> message: ')
     console.log(message);
 
-    client.replyMessage('<replyToken>', message)
+    client.replyMessage(replyToken, message)
     .then(() => {
         console.log('replyMessage is successfully!!')
     })
