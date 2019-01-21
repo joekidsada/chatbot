@@ -40,6 +40,7 @@ app.post('/webhook',(req, res) => {
             let id = message.id;
 
             if(type == 'text'){
+                console.log("_______________IF_______________")
                 let text = message.text;
                 const message = [{
                     type: 'text',
