@@ -130,7 +130,7 @@ const replyMessage = (replyToken, message, dataArray) => {
     console.log('==> message: ');
     console.log(message);
     console.log('==> dataArray: ');
-    console.log(dataArray[0].age);
+    console.log(dataArray[1].age);
     
     client.replyMessage(replyToken, message, dataArray)
     .then(() => {
