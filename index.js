@@ -24,7 +24,7 @@ app.get('/',(req, res) => {
     //     //console.log("Connected successfully to server");
     //     const db = client.db(dbName);
     //     const collection = db.collection('users');
-    //     collection.find({}).toArray((err, t) => {
+    //     collection.find({name : 18}).toArray((err, t) => {
     //         if(err) throw err
     //         console.log("Connected successfully to server");
     //         console.log(t);
@@ -68,7 +68,7 @@ app.post('/webhook',(req, res) => {
                     //console.log("Connected successfully to server");
                     const db = client.db(dbName);
                     const collection = db.collection('users');
-                    collection.find({}).toArray((err, result) => {
+                    collection.find({name : "Jo"}).toArray((err, result) => {
                         if(err) throw err
                         data = result;
                         console.log("Connected successfully to server");
