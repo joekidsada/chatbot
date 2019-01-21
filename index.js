@@ -19,19 +19,19 @@ app.use(bodyParser.json())
 
 
 app.get('/',(req, res) => {
-    // MongoClient.connect(url, function(err, client) {
-    //     assert.equal(null, err);
-    //     //console.log("Connected successfully to server");
-    //     const db = client.db(dbName);
-    //     const collection = db.collection('users');
-    //     collection.find({}).toArray((err, t) => {
-    //         if(err) throw err
-    //         console.log("Connected successfully to server");
-    //         console.log(t);
+    MongoClient.connect(url, function(err, client) {
+        assert.equal(null, err);
+        //console.log("Connected successfully to server");
+        const db = client.db(dbName);
+        const collection = db.collection('users');
+        collection.find({}).toArray((err, t) => {
+            if(err) throw err
+            console.log("Connected successfully to server");
+            console.log(t);
             
-    //     })
-    //     //client.close();
-    // });
+        })
+        //client.close();
+    });
     res.send({status: 'ok'});
 })
   
@@ -56,12 +56,12 @@ app.post('/webhook',(req, res) => {
         case 'message':
             let type = message.type;
             console.log(`type ==> ${type}`);
-            let data = message.text
-            console.log(`_____________________${data}____________________`);
             
             if(type == 'text'){
-                let text = message.text;
                 
+                let data = message.text //ข้อมูลจาก user
+                let sendToFind;
+                console.log(`_____________________${data}____________________`);
                 const messageResponse = [
                   {
                     type: 'text',
@@ -75,10 +75,10 @@ app.post('/webhook',(req, res) => {
                 ];
                   replyMessage(replyToken,messageResponse);
             }
-            else if(type == 'sticker'){
-                let stickerId = message.stickerId;
-                let packageId = message.packageId;
-            }
+            // else if(type == 'sticker'){
+            //     let stickerId = message.stickerId;
+            //     let packageId = message.packageId;
+            // }
 
             // console.log(`type ==> `);
             // console.log(type);
