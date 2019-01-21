@@ -62,7 +62,7 @@ app.post('/webhook',(req, res) => {
                 let dataFromUser = message.text //ข้อมูลจาก user
                 let sendToFind;
                 console.log(`_____________________${dataFromUser}____________________`);
-                let dataArray = [];
+                let dataArray;
                 MongoClient.connect(url, function(err, client) {
                     assert.equal(null, err);
                     //console.log("Connected successfully to server");
@@ -129,8 +129,8 @@ const replyMessage = (replyToken, message, dataArray) => {
     console.log(`==> replyToken: ${replyToken}`);
     console.log('==> message: ');
     console.log(message);
-    console.log('==> dataArray: ');
-    console.log(dataArray[1].age);
+    // console.log('==> dataArray: ');
+    // console.log(dataArray[1].age);
     
     client.replyMessage(replyToken, message, dataArray)
     .then(() => {
