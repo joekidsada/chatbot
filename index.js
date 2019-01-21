@@ -62,7 +62,7 @@ app.post('/webhook',(req, res) => {
                 let dataFromUser = message.text //ข้อมูลจาก user
                 let sendToFind;
                 console.log(`_____________________${dataFromUser}____________________`);
-                let data;
+                let dataArray;
                 MongoClient.connect(url, function(err, client) {
                     assert.equal(null, err);
                     //console.log("Connected successfully to server");
@@ -70,7 +70,7 @@ app.post('/webhook',(req, res) => {
                     const collection = db.collection('users');
                     collection.find({name : "Jo"}).toArray((err, result) => {
                         if(err) throw err
-                        data = result;
+                        dataArray = result;
                         console.log("Connected successfully to server");
                         console.log(result);
                         
@@ -88,7 +88,7 @@ app.post('/webhook',(req, res) => {
                     packageId: '1'
                   }
                 ];
-                  replyMessage(replyToken,messageResponse,data);
+                  replyMessage(replyToken,messageResponse,dataArray);
             }
             // else if(type == 'sticker'){
             //     let stickerId = message.stickerId;
@@ -123,14 +123,14 @@ app.post('/webhook',(req, res) => {
 })
 
 //Method
-const replyMessage = (replyToken, message, data) => {
+const replyMessage = (replyToken, message, dataArray) => {
     console.log('//////////////send TO user////////////////');
     console.log('==> [replyMessage]');
     console.log(`==> replyToken: ${replyToken}`)
     console.log('==> message: ')
     console.log(message);
-
-    client.replyMessage(replyToken, message, data)
+    let name = dataArray[0];
+    client.replyMessage(replyToken, message, name)
     .then(() => {
         console.log('replyMessage is successfully!!')
     })
