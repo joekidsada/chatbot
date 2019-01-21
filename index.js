@@ -129,8 +129,7 @@ const replyMessage = (replyToken, message, dataArray) => {
     console.log(`==> replyToken: ${replyToken}`)
     console.log('==> message: ')
     console.log(message);
-    let name = dataArray[0];
-    client.replyMessage(replyToken, message, name)
+    client.replyMessage(replyToken, message, dataArray)
     .then(() => {
         console.log('replyMessage is successfully!!')
     })
