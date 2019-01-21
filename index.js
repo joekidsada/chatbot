@@ -44,11 +44,6 @@ app.post('/webhook',(req, res) => {
                   {
                     type: 'text',
                     text: `Joe สวัสดีจ้า มีอะไรก็มาดิคับ!!`
-                  },
-                  {
-                    type: 'sticker',
-                    stickerId: '2',
-                    packageId: '1'
                   }
                 ];
                   replyMessage(replyToken,messageResponse);
