@@ -139,7 +139,6 @@ const replyMessage = (replyToken, message, data) => {
     });
 }
 
-
 app.listen(port, () => {
     console.log(`server run on port ${port}`);
 })
