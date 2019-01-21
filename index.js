@@ -42,11 +42,10 @@ app.post('/webhook',(req, res) => {
             if(type == 'text'){
                 console.log("_______________IF_______________")
                 let text = message.text;
-                const message = [{
+                const message = {
                     type: 'text',
                     text: `Joe สวัสดีจ้า มีอะไรก็มาดิคับ!!`
                   }
-                ];
                   replyMessage(replyToken,message);
             }
             else if(type == 'sticker'){
