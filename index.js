@@ -12,11 +12,12 @@ app.get('/',(req, res) => {
   
 app.post('/webhook',(req, res) => {
     let body = req.body;
-    let events = body.events[0];
-    let source = events.source;
-    let message = events.message;
+    let event = body.events[0];
+    let source = event.source;
+    let message = event.message;
 
-    
+    console.log(`Body ==>`);
+    console.log(body);
     console.log(`source ==>`);
     console.log(source);
     console.log(`message ==>`);
