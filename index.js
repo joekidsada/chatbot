@@ -15,20 +15,31 @@ app.post('/webhook',(req, res) => {
     let event = body.events[0];
     let source = event.source;
     let message = event.message;
-
+    let type = event.type;
     console.log(`Body ==>`);
     console.log(body);
     console.log(`source ==>`);
     console.log(source);
     console.log(`message ==>`);
     console.log(message);
+    console.log(`Type ==>`);
+    console.log(type);
+
+    switch (type) {
+        case 'message':
+            break;
+        case 'fllow':
+            break;
+        case 'unfollow':
+            break;
+        default:
+            break;
+    }
 
     let response = { 
         status: 'ok',
         body: body
     }
-    console.log("Body ==> ")
-    console.log(body);
     res.send(response);
 })
 
