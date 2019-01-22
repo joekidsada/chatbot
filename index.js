@@ -64,7 +64,7 @@ app.post('/webhook',(req, res) => {
                 let dataFromUser = message.text //ข้อมูลจาก user
                 let name;
                 let age;
-                let image;
+                let imageUrl;
                 let dataArray;
                 MongoClient.connect(url, function(err, client) {
                     assert.equal(null, err);
@@ -72,15 +72,15 @@ app.post('/webhook',(req, res) => {
                     const collection = db.collection('users');
                     
                     collection.find({name : dataFromUser}).toArray((err, result) => {
-                        
+
                         if(err) throw err
                         dataArray = result;
                         name = dataArray[0].name;
                         age = dataArray[0].age;
-                        image = dataArray[0].imgUrl;
+                        imageUrl = dataArray[0].imgUrl;
                         console.log(`____________________${name}__________________`);
                         console.log(`____________________${age}__________________`);
-                        console.log(`____________________${image}__________________`);
+                        console.log(`____________________${imageUrl}__________________`);
                         console.log("Connected successfully to server");
                         console.log(result);
                         
@@ -90,7 +90,20 @@ app.post('/webhook',(req, res) => {
                 const messageResponse = [
                   {
                     type: 'text',
-                    text: `Joe สวัสดีจ้า มีอะไรก็มาดิคับ!!`
+                    text: `hello world i'm chatbot V1 created by JoeKit`
+                  },
+                  {
+                    type: 'text',
+                    text: name
+                  },
+                  {
+                    type: 'text',
+                    text: age
+                  },
+                  {
+                    type: 'image',
+                    originalContentUrl: imageUrl,
+                    previewImageUrl: imageUrl
                   },
                   {
                     type: 'sticker',
