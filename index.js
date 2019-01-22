@@ -43,6 +43,8 @@ app.post('/webhook',(req, res) => {
     let type = event.type;
     let replyToken = event.replyToken;
 
+    console.log("======START HEAR=====");
+    
     console.log(`source ==>`);
     console.log(source);
     console.log(`message ==>`);
@@ -140,6 +142,8 @@ const replyMessage = (replyToken, message, dataArray) => {
     .catch((err) => {
         console.log(err);
     });
+    console.log("=========END HEAR=========");
+    
 }
 
 app.listen(port, () => {
