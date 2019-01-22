@@ -90,11 +90,9 @@ app.post('/webhook',(req, res) => {
                 const messageResponse = [
                   {
                     type: 'text',
-                    text: `hello world i'm chatbot V1 created by JoeKit`
-                  },
-                  {
-                    type: 'text',
-                    text: name
+                    text: `hello world i'm chatbot V1 created by JoKit
+                            name : ${name}
+                            age : ${age}`
                   },
                 //   {
                 //     type: 'text',
