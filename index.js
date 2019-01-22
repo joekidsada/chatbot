@@ -92,11 +92,11 @@ app.post('/webhook',(req, res) => {
                           //     type: 'text',
                           //     text: age
                           //   },
-                          //   {
-                          //     type: 'image',
-                          //     originalContentUrl: imageUrl,
-                          //     previewImageUrl: imageUrl
-                          //   },
+                            {
+                              type: 'image',
+                              originalContentUrl: imageUrl,
+                              previewImageUrl: imageUrl
+                            },
                             {
                               type: 'sticker',
                               stickerId: '2',
