@@ -72,6 +72,7 @@ app.post('/webhook',(req, res) => {
                     const collection = db.collection('users');
                     
                     collection.find({name : dataFromUser}).toArray((err, result) => {
+                        
                         if(err) throw err
                         dataArray = result;
                         name = dataArray[0].name;
