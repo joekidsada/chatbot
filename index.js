@@ -78,6 +78,7 @@ app.post('/webhook',(req, res) => {
                         name = dataArray[0].name;
                         age = dataArray[0].age;
                         imageUrl = dataArray[0].imgUrl;
+                        
                         console.log(`____________________${name}__________________`);
                         console.log(`____________________${age}__________________`);
                         console.log(`____________________${imageUrl}__________________`);
