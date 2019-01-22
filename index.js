@@ -92,14 +92,14 @@ app.post('/webhook',(req, res) => {
                     type: 'text',
                     text: `hello world i'm chatbot V1 created by JoeKit`
                   },
-                  {
-                    type: 'text',
-                    text: name
-                  },
-                  {
-                    type: 'text',
-                    text: age
-                  },
+                //   {
+                //     type: 'text',
+                //     text: name
+                //   },
+                //   {
+                //     type: 'text',
+                //     text: age
+                //   },
                 //   {
                 //     type: 'image',
                 //     originalContentUrl: imageUrl,
