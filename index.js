@@ -105,6 +105,7 @@ app.post('/webhook',(req, res) => {
                           ];
                           replyMessage(replyToken,messageResponse,dataArray);
                     })
+                    
                     //client.close();
                 });
                   //replyMessage(replyToken,messageResponse,dataArray);
