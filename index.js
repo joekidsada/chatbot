@@ -62,7 +62,9 @@ app.post('/webhook',(req, res) => {
             if(type == 'text'){
                 
                 let dataFromUser = message.text //ข้อมูลจาก user
-                let sendToFind;
+                let name;
+                let age;
+                let image;
                 let dataArray;
                 MongoClient.connect(url, function(err, client) {
                     assert.equal(null, err);
@@ -72,9 +74,12 @@ app.post('/webhook',(req, res) => {
                     collection.find({name : dataFromUser}).toArray((err, result) => {
                         if(err) throw err
                         dataArray = result;
-                        let name = dataArray[0].name;
+                        name = dataArray[0].name;
+                        age = dataArray[0].age;
+                        image = dataArray[0].imgUrl;
                         console.log(`____________________${name}__________________`);
-                        
+                        console.log(`____________________${age}__________________`);
+                        console.log(`____________________${image}__________________`);
                         console.log("Connected successfully to server");
                         console.log(result);
                         
