@@ -83,30 +83,29 @@ app.post('/webhook',(req, res) => {
                         console.log(`____________________${imageUrl}__________________`);
                         console.log("Connected successfully to server");
                         console.log(result);
-                        
+                        const messageResponse = [
+                            {
+                              type: 'text',
+                              text: "hello world i'm chatbot V1 created by JoKit." + " name : " + result[0].name + " age : " + result[0].age
+                            },
+                          //   {
+                          //     type: 'text',
+                          //     text: age
+                          //   },
+                          //   {
+                          //     type: 'image',
+                          //     originalContentUrl: imageUrl,
+                          //     previewImageUrl: imageUrl
+                          //   },
+                            {
+                              type: 'sticker',
+                              stickerId: '2',
+                              packageId: '1'
+                            }
+                          ];
                     })
                     //client.close();
                 });
-                const messageResponse = [
-                  {
-                    type: 'text',
-                    text: "hello world i'm chatbot V1 created by JoKit." + " name : " + result[0].name + " age : " + result[0].age
-                  },
-                //   {
-                //     type: 'text',
-                //     text: age
-                //   },
-                //   {
-                //     type: 'image',
-                //     originalContentUrl: imageUrl,
-                //     previewImageUrl: imageUrl
-                //   },
-                  {
-                    type: 'sticker',
-                    stickerId: '2',
-                    packageId: '1'
-                  }
-                ];
                   replyMessage(replyToken,messageResponse,dataArray);
             }
             // else if(type == 'sticker'){
