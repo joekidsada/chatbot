@@ -103,10 +103,11 @@ app.post('/webhook',(req, res) => {
                               packageId: '1'
                             }
                           ];
+                          replyMessage(replyToken,messageResponse,dataArray);
                     })
                     //client.close();
                 });
-                  replyMessage(replyToken,messageResponse,dataArray);
+                  //replyMessage(replyToken,messageResponse,dataArray);
             }
             // else if(type == 'sticker'){
             //     let stickerId = message.stickerId;
