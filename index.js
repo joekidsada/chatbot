@@ -91,8 +91,8 @@ app.post('/webhook',(req, res) => {
                   {
                     type: 'text',
                     text: `hello world i'm chatbot V1 created by JoKit
-                            name : ${name}
-                            age : ${age}`
+                            name : name
+                            age : age`
                   },
                 //   {
                 //     type: 'text',
