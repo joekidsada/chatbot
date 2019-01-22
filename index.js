@@ -68,7 +68,8 @@ app.post('/webhook',(req, res) => {
                     //console.log("Connected successfully to server");
                     const db = client.db(dbName);
                     const collection = db.collection('users');
-                    collection.find({name : "Jo"}).toArray((err, result) => {
+                    
+                    collection.find({name : dataFromUser}).toArray((err, result) => {
                         if(err) throw err
                         dataArray = result;
                         console.log("Connected successfully to server");
