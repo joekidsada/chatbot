@@ -63,17 +63,18 @@ app.post('/webhook',(req, res) => {
                 
                 let dataFromUser = message.text //ข้อมูลจาก user
                 let sendToFind;
-                console.log(`_____________________${dataFromUser}____________________`);
                 let dataArray;
                 MongoClient.connect(url, function(err, client) {
                     assert.equal(null, err);
-                    //console.log("Connected successfully to server");
                     const db = client.db(dbName);
                     const collection = db.collection('users');
                     
                     collection.find({name : dataFromUser}).toArray((err, result) => {
                         if(err) throw err
                         dataArray = result;
+                        let name = dataArray[0].name;
+                        console.log(`____________________${name}__________________`);
+                        
                         console.log("Connected successfully to server");
                         console.log(result);
                         
